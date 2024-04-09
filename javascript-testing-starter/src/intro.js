@@ -1,0 +1,34 @@
+// Lesson: Writing your first tests
+export function max(a, b) {
+  if (a > b) return a
+  else if (b > a) return b
+  return a
+}
+
+// Exercise
+export function fizzBuzz(n) {
+  if (n % 3 === 0 && n % 5 === 0) return 'FizzBuzz'
+  if (n % 3 === 0) return 'Fizz'
+  if (n % 5 === 0) return 'Buzz'
+  return n.toString()
+}
+
+export function calculatorAverage(numbers) {
+  if (numbers.length === 0) {
+    return NaN
+  }
+  const sum = numbers.reduce((acc, val) => {
+    return acc + val
+  }, 0)
+  return sum / numbers.length
+}
+
+export function factorialNumber(number) {
+  if (number === 0) return 1
+  if (typeof number !== 'number') return -1
+  let sum = 1
+  for (let i = 1; i <= number; i++) {
+    sum *= i
+  }
+  return sum
+}
