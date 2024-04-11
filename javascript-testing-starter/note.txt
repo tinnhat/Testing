@@ -1,0 +1,38 @@
+https://vitest.dev/api/expect.html
+
+một số matchers kiểm tra trong lúc test:
+
+equality - kiểm tra bằng
++toBe
++toEqual
+
+truthiness - kiểm tra truthy
++toBeTruthy
++toBeFalsy
++toBeNull
++toBeUndefined
++toBeDefined
+
+numbers
++toBeGreaterThan
++toBeGreaterThanOrEqualTo
++toBeLessThan
++toBeLessThanOrEqualTo
++toBeCloseTo (kiểm tra giá trị float)
+
+strings
++toMatch (regular expression or strings)
+
+objects
++toMatchObject
++toHaveProperty
+
+arrays
++toContain
++toHaveLength
+
+exceptions
++toThrowError
+
+
+
