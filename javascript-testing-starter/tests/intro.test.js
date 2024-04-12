@@ -1,83 +1,83 @@
 import { describe, test, it, expect } from 'vitest'
 import { calculatorAverage, factorialNumber, fizzBuzz, max } from '../src/intro'
 
-// describe('max', () => {
-//   it('should return fisrt agurment',() => {
-//     // AAA
-//     // Arrange
-//     // Act -> action
-//     const result = max(2,1)
-//     // Assert
-//     expect(result).toBe(2)
-//   });
+describe('max', () => {
+  it('should return fisrt agurment',() => {
+    // AAA
+    // Arrange
+    // Act -> action
+    const result = max(2,1)
+    // Assert
+    expect(result).toBe(2)
+  });
 
-//   it('should return second agurment',() => {
-//     // AAA
-//     // Arrange
-//     // Act -> action
-//     const result = max(1,2)
-//     // Assert
-//     expect(result).toBe(2)
-//   });
+  it('should return second agurment',() => {
+    // AAA
+    // Arrange
+    // Act -> action
+    const result = max(1,2)
+    // Assert
+    expect(result).toBe(2)
+  });
 
-//   it('should return first agurment if two agurment equal',() => {
-//     // AAA
-//     // Arrange
-//     // Act -> action
-//     const result = max(1,1)
-//     // Assert
-//     expect(result).toBe(1)
-//   });
-// })
+  it('should return first agurment if two agurment equal',() => {
+    // AAA
+    // Arrange
+    // Act -> action
+    const result = max(1,1)
+    // Assert
+    expect(result).toBe(1)
+  });
+})
 
-// //exercises
+//exercises
 
-// describe('Function fizzBuzz', () => {
-//   it('should return FizzBuzz',() => {
-//     // Assert
-//     expect(fizzBuzz(15)).toBe('FizzBuzz')
-//   });
+describe('Function fizzBuzz', () => {
+  it('should return FizzBuzz',() => {
+    // Assert
+    expect(fizzBuzz(15)).toBe('FizzBuzz')
+  });
 
-//   it('should return Fizz',() => {
-//     // Assert
-//     expect(fizzBuzz(27)).toBe('Fizz')
-//   });
+  it('should return Fizz',() => {
+    // Assert
+    expect(fizzBuzz(27)).toBe('Fizz')
+  });
 
-//   it('should return Buzz',() => {
-//     // Assert
-//     expect(fizzBuzz(50)).toBe('Buzz')
-//   });
+  it('should return Buzz',() => {
+    // Assert
+    expect(fizzBuzz(50)).toBe('Buzz')
+  });
 
-//   it('should return string of agurment',() => {
-//     // Assert
-//     expect(fizzBuzz('iu900@')).toBe('iu900@')
-//   });
-// })
+  it('should return string of agurment',() => {
+    // Assert
+    expect(fizzBuzz('iu900@')).toBe('iu900@')
+  });
+})
 
 
-//tdd 
+// tdd 
 // test driven development
 // viết test case trước -> implement cho function
 // 100% case sẽ được cover by test case
-// describe('calculatorAverage', () => {
-//   it('should return NaN if given empty array', () => {
-//     // AAA
-//     // Arrange
-//     // Act -> action
-//     const result = calculatorAverage([])
-//     // Assert
-//     expect(result).toBe(NaN)
-//   })
+describe('calculatorAverage', () => {
+  it('should return NaN if given empty array', () => {
+    // AAA
+    // Arrange
+    // Act -> action
+    const result = calculatorAverage([])
+    // Assert
+    expect(result).toBe(NaN)
+  })
 
-//   it('should return average length of array', () => {
-//     // AAA
-//     // Arrange
-//     // Act -> action
-//     const result = calculatorAverage([1,2,3,4])
-//     // Assert
-//     expect(result).toBe(2.5)
-//   })
-// })
+  it('should return average length of array', () => {
+    // AAA
+    // Arrange
+    // Act -> action
+    const result = calculatorAverage([1,2,3,4])
+    // Assert
+    expect(result).toBe(2.5)
+  })
+})
 
 
 //0! = 1
