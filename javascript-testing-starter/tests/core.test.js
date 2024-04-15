@@ -1,5 +1,6 @@
-import { it, expect, describe } from 'vitest'
+import { it, expect, describe, beforeEach, beforeAll, afterEach } from "vitest";
 import {
+  Stack,
   calculateDiscount,
   canDrive,
   fetchData,
@@ -7,15 +8,15 @@ import {
   isPriceInRange,
   isValidUsername,
   validateUserInput,
-} from '../src/core'
+} from "../src/core";
 
-describe('test reference', () => {
-  it('test object', () => {
-    const result = { name: 'tin' }
-    expect(result).toEqual({ name: 'tin' })
+describe("test reference", () => {
+  it("test object", () => {
+    const result = { name: "tin" };
+    expect(result).toEqual({ name: "tin" });
     // false -> bởi vì to be chỉ dùng cho primitive type
-  })
-})
+  });
+});
 
 // describe('test suite', () => {
 //   it('test case', () => {
@@ -29,57 +30,57 @@ describe('test reference', () => {
 //   })
 // })
 
-describe('test suite', () => {
-  it('test case', () => {
-    const result = [1, 2, 3, 4]
+describe("test suite", () => {
+  it("test case", () => {
+    const result = [1, 2, 3, 4];
     //Loose (to general)
-    expect(result).toBeDefined()
+    expect(result).toBeDefined();
     //Tight(to specific)
-    expect(result).toEqual(expect.arrayContaining([1, 2, 3, 4]))
+    expect(result).toEqual(expect.arrayContaining([1, 2, 3, 4]));
     // Better assertion
-    expect(result).toHaveLength(4)
-  })
-})
+    expect(result).toHaveLength(4);
+  });
+});
 
-describe('getCoupons', () => {
-  it('should return an array', () => {
-    const result = getCoupons()
-    expect(Array.isArray(result)).toBe(true)
-    expect(result.length).toBeGreaterThan(0)
-  })
-  it('object in array should have two properties', () => {
-    const result = getCoupons()
-    result.forEach(item => {
-      expect(item).toHaveProperty('code')
-      expect(item).toHaveProperty('discount')
-    })
-  })
-  it('object in array should have valid discount value', () => {
-    const result = getCoupons()
-    result.forEach(item => {
-      expect(item).toHaveProperty('discount')
-      expect(item.discount).toBeGreaterThanOrEqual(0)
-      expect(typeof item.discount === 'number').toBe(true)
-    })
-  })
-})
+describe("getCoupons", () => {
+  it("should return an array", () => {
+    const result = getCoupons();
+    expect(Array.isArray(result)).toBe(true);
+    expect(result.length).toBeGreaterThan(0);
+  });
+  it("object in array should have two properties", () => {
+    const result = getCoupons();
+    result.forEach((item) => {
+      expect(item).toHaveProperty("code");
+      expect(item).toHaveProperty("discount");
+    });
+  });
+  it("object in array should have valid discount value", () => {
+    const result = getCoupons();
+    result.forEach((item) => {
+      expect(item).toHaveProperty("discount");
+      expect(item.discount).toBeGreaterThanOrEqual(0);
+      expect(typeof item.discount === "number").toBe(true);
+    });
+  });
+});
 
-describe('calculatorDiscount', () => {
+describe("calculatorDiscount", () => {
   it.each([
     {
       price: 100,
-      discountCode: 'SAVE10',
+      discountCode: "SAVE10",
       result: 90,
     },
     {
-      price: '100',
-      discountCode: 'SAVE10',
-      result: 'Invalid price',
+      price: "100",
+      discountCode: "SAVE10",
+      result: "Invalid price",
     },
     {
       price: -10,
-      discountCode: 'SAVE10',
-      result: 'Invalid price',
+      discountCode: "SAVE10",
+      result: "Invalid price",
     },
 
     {
@@ -88,15 +89,15 @@ describe('calculatorDiscount', () => {
       result: /invalid/i,
     },
   ])(
-    'should return $result when price = $price and discountCode = $discountCode',
+    "should return $result when price = $price and discountCode = $discountCode",
     ({ price, discountCode, result }) => {
-      if (result.toString().includes('/invalid/i')) {
-        expect(calculateDiscount(price, discountCode)).toMatch(result)
+      if (result.toString().includes("/invalid/i")) {
+        expect(calculateDiscount(price, discountCode)).toMatch(result);
       } else {
-        expect(calculateDiscount(price, discountCode)).toBe(result)
+        expect(calculateDiscount(price, discountCode)).toBe(result);
       }
-    }
-  )
+    },
+  );
   // it('should return valid discount', () => {
   //   const result = calculateDiscount(100, 'SAVE10')
   //   expect(typeof result === 'number').toBe(true)
@@ -116,14 +117,14 @@ describe('calculatorDiscount', () => {
   //   const result = calculateDiscount(10, 12312312)
   //   expect(result).toMatch(/invalid/i)
   // })
-})
+});
 
-describe('validateUserInput', () => {
+describe("validateUserInput", () => {
   it.each([
     {
-      username: 'tinnguyen',
+      username: "tinnguyen",
       age: 19,
-      result: 'Validation successful',
+      result: "Validation successful",
     },
     {
       username: 123,
@@ -131,35 +132,35 @@ describe('validateUserInput', () => {
       result: /invalid/i,
     },
     {
-      username: '12',
+      username: "12",
       age: 10,
       result: /invalid/i,
     },
     {
-      username: 'tinnguyen',
+      username: "tinnguyen",
       age: 10,
       result: /invalid/i,
     },
     {
-      username: 'nhattin',
-      age: '10',
+      username: "nhattin",
+      age: "10",
       result: /invalid/i,
     },
     {
-      username: '12',
-      age: '10',
-      result: 'Invalid username, Invalid age',
+      username: "12",
+      age: "10",
+      result: "Invalid username, Invalid age",
     },
   ])(
-    'should return $result when username = $username and age = $age',
+    "should return $result when username = $username and age = $age",
     ({ username, age, result }) => {
-      if (result.toString().includes('/invalid/i')) {
-        expect(validateUserInput(username, age)).toMatch(result)
+      if (result.toString().includes("/invalid/i")) {
+        expect(validateUserInput(username, age)).toMatch(result);
       } else {
-        expect(validateUserInput(username, age)).toBe(result)
+        expect(validateUserInput(username, age)).toBe(result);
       }
-    }
-  )
+    },
+  );
   // it('should return invalid error when username invalid', () => {
   //   expect(validateUserInput('12', 10)).toMatch(/invalid/i)
   //   expect(validateUserInput(123, 10)).toMatch(/invalid/i)
@@ -176,9 +177,9 @@ describe('validateUserInput', () => {
   // it('should return validate success if valid value', () => {
   //   expect(validateUserInput('tin nguyen', 19)).toBe('Validation successful')
   // })
-})
+});
 
-describe('isPriceInRange', () => {
+describe("isPriceInRange", () => {
   it.each([
     {
       price: 100,
@@ -197,10 +198,13 @@ describe('isPriceInRange', () => {
       min: 0,
       max: 100,
       result: true,
-    }
-  ])('should return $result when price = $price, min = $min, max = $max', ({ price, min, max, result }) => {
-    expect(isPriceInRange(price, min, max)).toBe(result)
-  })
+    },
+  ])(
+    "should return $result when price = $price, min = $min, max = $max",
+    ({ price, min, max, result }) => {
+      expect(isPriceInRange(price, min, max)).toBe(result);
+    },
+  );
   // it('should return false if price out of range', () => {
   //   expect(isPriceInRange(-10, 0, 100)).toBe(false)
   //   expect(isPriceInRange(210, 0, 100)).toBe(false)
@@ -214,25 +218,28 @@ describe('isPriceInRange', () => {
   // it('should return true if price is within the range', () => {
   //   expect(isPriceInRange(50, 0, 100)).toBe(true)
   // })
-})
+});
 
-describe('isValidUsername', () => {
+describe("isValidUsername", () => {
   it.each([
     {
-      username: 'tinnguyen',
+      username: "tinnguyen",
       result: true,
     },
     {
-      username: 'tin12345',
+      username: "tin12345",
       result: true,
     },
     {
       username: undefined,
       result: false,
-    }
-  ])('should return $result when username = $username', ({ username, result }) => {
-    expect(isValidUsername(username)).toBe(result)
-  })
+    },
+  ])(
+    "should return $result when username = $username",
+    ({ username, result }) => {
+      expect(isValidUsername(username)).toBe(result);
+    },
+  );
   // it('should return false if length of username out of range', () => {
   //   expect(isValidUsername('nguyennhattingdfgdf')).toBe(false)
   //   expect(isValidUsername('12')).toBe(false)
@@ -248,46 +255,46 @@ describe('isValidUsername', () => {
   //   expect(isValidUsername(null)).toBe(false)
   //   expect(isValidUsername(123)).toBe(false)
   // })
-})
+});
 
-describe('canDrive', () => {
+describe("canDrive", () => {
   it.each([
     {
       age: 15,
-      country: 'US',
+      country: "US",
       result: false,
     },
     {
       age: 16,
-      country: 'US',
+      country: "US",
       result: true,
     },
     {
       age: 17,
-      country: 'US',
+      country: "US",
       result: true,
     },
     {
       age: 16,
-      country: 'UK',
+      country: "UK",
       result: false,
     },
     {
       age: 17,
-      country: 'UK',
+      country: "UK",
       result: true,
     },
     {
       age: 18,
-      country: 'UK',
+      country: "UK",
       result: true,
     },
   ])(
-    'should return $result when age is $age and country is $country',
+    "should return $result when age is $age and country is $country",
     ({ age, country, result }) => {
-      expect(canDrive(age, country)).toBe(result)
-    }
-  )
+      expect(canDrive(age, country)).toBe(result);
+    },
+  );
   // it('should return false if age is less than legal driving age', () => {
   //   expect(canDrive(15, 'US')).toBe(false)
   // })
@@ -309,17 +316,87 @@ describe('canDrive', () => {
   // it('should return false message if age < legal driving age', () => {
   //   expect(canDrive(15, 'US')).toBe(false)
   // })
-})
+});
 
-describe('fetchData',() => {
-  
-  it('should return an array', async () => {
+describe("fetchData", () => {
+  it("should return an array", async () => {
     try {
-      const result = await fetchData()
-      expect(result).toEqual([1, 2, 3])
+      const result = await fetchData();
+      expect(result).toEqual([1, 2, 3]);
     } catch (error) {
-      expect(error).toHaveProperty('message')
+      expect(error).toHaveProperty("message");
     }
-    
-  })
-})
+  });
+});
+
+describe("test suite", () => {
+  beforeAll(() => {
+    console.log("beforeAll call");
+  });
+  beforeEach(() => {
+    console.log("beforeEach call");
+  });
+
+  afterEach(() => {
+    console.log("afterEach call");
+  });
+  it("test case", () => {});
+  it("test case", () => {});
+});
+
+describe("stack", () => {
+  let stack;
+  beforeEach(() => {
+    stack = new Stack();
+    stack.push(1);
+    stack.push(2);
+  });
+
+  afterEach(() => {
+    stack.clear();
+  });
+  it("push item to the stack", () => {
+    expect(stack.size()).toBe(2);
+  });
+  it("pop item should remove item from the stack", () => {
+    const popItem = stack.pop();
+    expect(popItem).toBe(2);
+    expect(stack.size()).toBe(1);
+  });
+  it("pop item should throw an error if stack is empty", () => {
+    const stack = new Stack();
+    expect(() => {
+      stack.pop();
+    }).toThrow(/empty/i);
+  });
+
+  it("peek item should return the top item of the stack", () => {
+    const peekItem = stack.peek();
+    expect(peekItem).toBe(2);
+  });
+
+  it("peek item should throw an error if stack is empty", () => {
+    const stack = new Stack();
+    expect(() => {
+      stack.peek();
+    }).toThrow(/empty/i);
+  });
+
+  it("isEmpty should return true if stack is empty", () => {
+    const stack = new Stack();
+    expect(stack.isEmpty()).toBe(true);
+  });
+
+  it("isEmpty should return false if stack is not empty", () => {
+    expect(stack.isEmpty()).toBe(false);
+  });
+
+  it("size should return the size of the stack", () => {
+    expect(stack.size()).toBe(2);
+  });
+
+  it("clear should clear the stack", () => {
+    stack.clear();
+    expect(stack.size()).toBe(0);
+  });
+});
